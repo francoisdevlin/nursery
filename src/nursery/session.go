@@ -1,6 +1,11 @@
 package nursery
 
+import (
+	"time"
+)
+
 type SessionInfo struct {
-	Id                int
-	RolesRequirements map[Role]int
+	Id               int
+	RoleRequirements map[Role]int
+	ActivityDate     time.Time
 }

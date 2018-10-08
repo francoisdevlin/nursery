@@ -1,11 +1,16 @@
 package nursery
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 type Person struct {
 	Id                 int
 	DaysBetweenServing int
 	Name               string
+	LastServedOn       time.Time
+	Qualifications     []Role
 }
 
 func (p Person) String() string {
