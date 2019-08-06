@@ -66,20 +66,6 @@
       (is (= (first-item-greater-than 3.5 tree) e3))
     )))
 
-(deftest test-partitpant-count-status
-  (testing "Tests participant count, most basic"
-    (is (= (particpant-count-status 1 []) :undersubscribed))
-    (is (= (particpant-count-status 1 [{}]) :satisfied))
-    (is (= (particpant-count-status 1 [{} {}]) :oversubscribed))
-    ))
-
-(deftest test-sufficient-supervisor-status
-  (testing "Tests participant count, most basic"
-    (is (= (supervisor-size []) :undersubscribed))
-    (is (= (supervisor-size [{:assigned-roles [:not-a-supervisor]}]) :undersubscribed))
-    (is (= (supervisor-size [{:assigned-roles [:supervisor]}]) :satisfied))
-    ))
-
 (deftest test-size-functions
   (testing "Make sure size functions do what we expect"
     (is (= ((at-least 1) 0) :undersubscribed))
