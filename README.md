@@ -4,7 +4,11 @@ A Clojure library designed to ... well, that part is up to you.
 
 ## Usage
 
-FIXME
+### Testing
+
+You can test the library with docker like so:
+
+	docker run -it --rm -v "$PWD":/usr/src/app -w /usr/src/app clojure lein test
 
 ## License
 
