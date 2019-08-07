@@ -8,7 +8,12 @@ A Clojure library designed to ... well, that part is up to you.
 
 You can test the library with docker like so:
 
-	docker run -it --rm -v "$PWD":/usr/src/app -w /usr/src/app clojure lein test
+	docker run -it --rm -v "$PWD":/usr/src/app -v /home/ubuntu/.m2:/root/.m2  -w /usr/src/app clojure lein test
+
+### Docker setup
+I found the link below really handy:
+
+	https://danlebrero.com/2017/09/25/how-do-docker-compose-development-environement/
 
 ## License
 

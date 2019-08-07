@@ -10,8 +10,8 @@
   {
    :breeze-id breeze-id
    :full-name full-name
-   :birthday (.parse (new SimpleDateFormat "dd/MM/yyyy") birthday)
-   :role ({"Supervisor" :supervisor} role)
+   :birthday (if (= "" birthday) #inst "1970-01-01" (.parse (new SimpleDateFormat "dd/MM/yyyy") birthday))
+   :roles (if (#{"Supervisor"} role) [:supervisor] [:babies :toddlers :pre-k :sunday-school])
    :frequency (Float/parseFloat frequency)
    })
 
@@ -33,17 +33,6 @@
         id-indexed-volunteers (index-by :breeze-id updated-records)]
     ))
 
-(defn grab-signups
-  [event-date volunteer-list]
-  [])
-
-(defn grab-associated-volunteers
-  [proposed-volunteer volunteer-index]
-  [proposed-volunteer])
-
-(defn is-satisfied
-  [event-rules volunteer-list])
-
 (defn role-serving-check [role]
   (comp (partial some #{role}) :assigned-roles))
 
@@ -53,5 +42,3 @@
 (defn assign-role
   [role volunteer]
   (assoc volunteer :assigned-roles #{role}))
-
-(def is-female? (comp #{:female} :gender))
