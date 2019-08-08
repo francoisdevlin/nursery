@@ -32,3 +32,19 @@
       (is (= false (is-active? closed-range-blackout #inst "2019-01-08")))
       )))
 
+(deftest test-printing-items
+  (testing ""
+    (let [blackout (BlackoutDates. #{#inst "2019-01-01" #inst "2018-01-01"})
+          invert-blackout (InvertRestriction. blackout)
+          nil-range-blackout (RangeRestriction. nil nil)
+          less-than-range-blackout (RangeRestriction. nil #inst "2019-01-01")
+          greater-than-range-blackout (RangeRestriction. #inst "2019-01-01" nil)
+          closed-range-blackout (RangeRestriction. #inst "2019-01-01" #inst "2019-01-07")
+          ]
+      (is (= "on dates 2018-01-01, 2019-01-01" (print-restriction blackout)))
+      (is (= "except on dates 2018-01-01, 2019-01-01" (print-restriction invert-blackout)))
+      (is (= "" (print-restriction nil-range-blackout)))
+      (is (= "Through 2019-01-01" (print-restriction less-than-range-blackout)))
+      (is (= "Starting on 2019-01-01" (print-restriction greater-than-range-blackout)))
+      (is (= "Starting on 2019-01-01 Through 2019-01-07" (print-restriction closed-range-blackout)))
+      )))
