@@ -2,6 +2,7 @@
   (:require [nursery-schedule.web-utils :refer :all]
             [nursery-schedule.core :refer :all]
             [nursery-schedule.sample-data :refer :all]
+            [clojure.string :as s]
             )
   (:import (java.text SimpleDateFormat))
   )
@@ -17,7 +18,7 @@
 (def name-lookup ["Name" :full-name])
 (def birthday-lookup ["Birthday" #(.format yyyy-mm-dd-formatter (:birthday %))])
 (def frequency-lookup ["Frequency" #(str (:frequency %) "/week")])
-(def roles-lookup ["Roles" :roles])
+(def roles-lookup ["Roles" (comp (partial s/join " ") :roles)])
 
 (defn render-all
   [people]
